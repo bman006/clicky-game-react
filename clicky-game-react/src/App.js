@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ImageContainer   from './components/ImageContainer';
+import ClickImage       from './components/ClickImage';
+import imageRefs        from './imageRefs.json';
 
 class App extends Component {
+  state = {
+    imageRefs
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <ImageContainer>
+      {this.state.imageRefs.map(pic => (
+        <ClickImage 
+          key   = {pic.name}
+          name  = {pic.name}
+          pic   = {pic.image}
+        />
+      ))}
+      </ ImageContainer>
     );
   }
 }
